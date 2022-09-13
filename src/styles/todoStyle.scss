@@ -28,9 +28,19 @@
         color: red;
     }
     input {
+        width: 70%;
         border-radius: 10px;
         margin: 0px 10px;
         padding: 10px;
+        border-width: 2.5px;
+    }
+    button {
+        cursor: pointer;
+        padding: 10px 25px;
+        border-radius: 10px;
+        background-color: #000000;
+        color: gold;
+        font-weight: 700;
     }
 }
 
@@ -43,6 +53,12 @@ hr {
 
 .adding-text {
     margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.todolist {
+    height: 60vh;
+    overflow: auto;
 }
 
 .todo-item {
@@ -53,11 +69,14 @@ hr {
     .checkbox {
         width: 1.2rem;
         height: 1.2rem;
+        cursor: pointer;
     }
     .todo-text {
-        width: max-content ;
+        width: max-content;
         margin: 0 auto;
         text-align: start;
+        font-weight: 600;
+        font-size: 1.2rem;
     }
     .complete {
         text-decoration: line-through;
@@ -67,8 +86,19 @@ hr {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        button {
-            margin: 0 10px;
+        .action-icon {
+            cursor: pointer;
+            margin: 0 20px;
+            color: gray;
+            transition: color .2s ease;
+            &:hover {
+                color: goldenrod;
+            }
+        }
+        .action-divider {
+            width: 2px;
+            height: 100%;
+            background-color: goldenrod;
         }
     }
 }
