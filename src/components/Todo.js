@@ -1,21 +1,13 @@
-
-function Todo({info, keys, completeTodo}) {
+function Todo({ info, keys, completeTodo, onDelete }) {
     return (
-        <div className='todo-item' key={info.id}>
-            <div>{keys+1}</div>
+        <div className='todo-item' key={keys}>
+            <input className="checkbox" type="checkbox" onClick={completeTodo} />
             <div className={`todo-text ${info.isComplete ? "complete" : ""}`}>
                 {info.text}
             </div>
             <div className="buttons-container">
                 <button>Edit</button>
-                <button onClick={completeTodo}>
-                    {
-                        !info.isComplete ?
-                        <>Mark As Complete</>
-                        :
-                        <>Mark As Not Complete</>
-                    }
-                </button>
+                <button onClick={onDelete}>Delete</button>
             </div>
         </div>)
 }

@@ -7,9 +7,14 @@ function TodoList(props) {
     return (
         <div>
             {
-                props.list.map((item, index) => {
+                props.list.map((item) => {
                     return <Fragment key={item.id}>
-                        <Todo info={item} keys={index} completeTodo={() => props.onCompleteTodo(item.id)}/>
+                        <Todo
+                            info={item}
+                            keys={item.id}
+                            completeTodo={() => props.onCompleteTodo(item.id)}
+                            onDelete={() => props.onDelete(item.id)}
+                        />
                     </Fragment>
 
                 })

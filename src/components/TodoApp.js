@@ -5,7 +5,7 @@ import TodoList from "./TodoList"
 function TodoApp() {
     const [todos, setTodos] = useState([])
 
-    const todoChangeHandler = (update) => {
+    const todoUpdateHandler = (update) => {
         let newData = {
             id: todos.length + 1,
             text: update,
@@ -37,12 +37,34 @@ function TodoApp() {
         setTodos(updateTodo)
     }
 
+    const deleteHanlder = (id) => {
+        //! we can use the id directly aswell but not in any project
+        //! here if we wanna use id we must decrease it by 1
+
+        // WITH FILTER
+        /*         let filterItmes = todos.filter((item) => item.id !== id)
+                setTodos(filterItmes)
+         */
+        //? this is the best way to handle any app
+        let selectedIndex = todos.findIndex((item) => item.id === id)
+
+        let updateTodo = [...todos]
+        updateTodo.splice(selectedIndex, 1)
+
+        setTodos(updateTodo)
+    }
+
     return (
         <div className="container">
-            <h2>TodoList</h2>
-            <TodoForm addTodo={todoChangeHandler} />
+            <div className="linethrought" />
+            <h2 className="title">TodoList</h2>
+            <TodoForm addTodo={todoUpdateHandler} />
             <hr />
-            <TodoList list={todos} onCompleteTodo={onCompleteTodo} />
+            <TodoList
+                list={todos}
+                onCompleteTodo={onCompleteTodo}
+                onDelete={deleteHanlder}
+            />
         </div>
     )
 }
