@@ -2,9 +2,9 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    border: 2px solid rgb(35, 7, 251);
+    border: 20px solid grey;
     width: 70%;
-    margin: 0 auto;
+    margin: auto;
 }
 
 
@@ -17,6 +17,36 @@
         border-radius: 10px;
         margin: 0px 10px;
         padding: 10px;
+    }
+}
+
+hr {
+    width: 100%;
+    margin: 2rem 0px;
+    border-color: gray;
+    background-color: gray;
+}
+
+.adding-text {
+    margin-bottom: 1rem;
+}
+
+.todo-item {
+    display: flex;
+    margin: 15px 0px;
+    .todo-text {
+        width: 10%;
+        margin: 0 auto;
+        text-align: start;
+    }
+    .complete {
+        text-decoration: line-through;
+        color: burlywood;
+    }
+    .buttons-container {
+        button {
+            margin: 0 10px;
+        }
     }
 }
 
