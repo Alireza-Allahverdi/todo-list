@@ -5,7 +5,7 @@ import TodoList from "./TodoList"
 function TodoApp() {
     const [todos, setTodos] = useState([])
 
-    const todoUpdateHandler = (update) => {
+    const todoAddHandler = (update) => {
         let newData = {
             id: todos.length + 1,
             text: update,
@@ -54,16 +54,29 @@ function TodoApp() {
         setTodos(updateTodo)
     }
 
+    const editHandler = (id, newVal) => {
+        let selectedIndex = todos.findIndex((item) => item.id === id)
+
+        let selectedTodo = { ...todos[selectedIndex] }
+        selectedTodo.text = newVal
+
+        let copyTodo = [...todos]
+        copyTodo[selectedIndex] = selectedTodo
+
+        setTodos(copyTodo)
+    }
+
     return (
         <div className="container">
             <div className="linethrought" />
             <h2 className="title">TodoList</h2>
-            <TodoForm addTodo={todoUpdateHandler} />
+            <TodoForm addOrEditTodo={todoAddHandler} />
             <hr />
             <TodoList
                 list={todos}
                 onCompleteTodo={onCompleteTodo}
                 onDelete={deleteHanlder}
+                updateTodo={editHandler}
             />
         </div>
     )

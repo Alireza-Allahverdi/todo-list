@@ -1,13 +1,7 @@
-import { faEdit, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function Todo({
-    info,
-    keys,
-    completeTodo,
-    onDelete,
-    onEdit
-}) {
+function Todo({ info, keys, completeTodo, onDelete, onEdit }) {
     return (
         <div className='todo-item' key={keys}>
             <input className="checkbox" type="checkbox" onClick={completeTodo} />
