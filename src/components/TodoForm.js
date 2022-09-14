@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function TodoForm(props) {
     const [inputVal, setInputVal] = useState(props.isEditMode ? props.value : "");
     const [err, setErr] = useState("")
+
+    const inputRef = useRef(null)
 
     const inputChangeHandler = (e) => {
         setErr("")
@@ -20,21 +22,29 @@ function TodoForm(props) {
         props.addOrEditTodo(inputVal)
         setInputVal("")
     }
+
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
+
     return (
         <form onSubmit={submitTodo} className="todo-form">
             {
                 props.isEditMode ?
                     <>
+                        <hr />
                         <p className='err'>{err}</p>
                         <input
+                            id="editInp"
+                            className='update-inp'
                             type="text"
                             onChange={inputChangeHandler}
                             value={inputVal}
-                            placeholder={"Enter New Todo"} />
-                        <button type='submit'>
-                            Edit
-                        </button>
-
+                            placeholder={"Enter New Todo"}
+                            ref={inputRef}
+                        />
+                        <button className='update-btn' type='submit'>Update</button>
+                        <button className='update-btn' type='button'>Cancel</button>
                     </>
                     :
                     <>
@@ -43,11 +53,10 @@ function TodoForm(props) {
                             type="text"
                             onChange={inputChangeHandler}
                             value={inputVal}
-                            placeholder={"Enter Todo"} />
-                        <button type='submit'>
-                            Add
-                        </button>
-
+                            placeholder={"Enter Todo"}
+                            ref={inputRef}
+                        />
+                        <button type='submit'>Add</button>
                     </>
             }
         </form>

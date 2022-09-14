@@ -42,6 +42,14 @@
         color: gold;
         font-weight: 700;
     }
+    .update-inp {
+        width: 50%;
+        margin-top: 1rem;
+    }
+    .update-btn {
+        margin: 0px 2px;
+        padding: 10px 15px;
+    }
 }
 
 hr {
@@ -58,7 +66,8 @@ hr {
 
 .todolist {
     height: 60vh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .todo-item {
