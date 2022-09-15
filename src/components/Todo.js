@@ -10,10 +10,10 @@ function Todo({ info, keys, completeTodo, onDelete, onEdit }) {
             </div>
             <div className="buttons-container">
                 <a href='#editInp'>
-                    <FontAwesomeIcon icon={faPen} onClick={onEdit} className="action-icon" />
+                    <FontAwesomeIcon icon={faPen} onClick={onEdit} className="action-icon edit-icon" />
                 </a>
                 <div className='action-divider'></div>
-                <FontAwesomeIcon icon={faTrash} onClick={onDelete} className="action-icon" />
+                <FontAwesomeIcon icon={faTrash} onClick={onDelete} className="action-icon trash-icon" />
             </div>
         </div>)
 }
