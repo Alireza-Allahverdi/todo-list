@@ -5,7 +5,7 @@ function Todo({ info, keys, completeTodo, onDelete, onEdit }) {
     return (
         <div className='todo-item' key={keys}>
             <input className="checkbox" type="checkbox" onClick={completeTodo} />
-            <div className={`todo-text ${info.isComplete ? "complete" : ""}`}>
+            <div className={`todo-text ${info.isComplete ? "complete" : ""}`} onClick={completeTodo}>
                 {info.text}
             </div>
             <div className="buttons-container">

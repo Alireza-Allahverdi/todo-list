@@ -13,12 +13,6 @@ const NavBar = ({ unCompleted, selectHanlder, state }) => {
                 unCompleted ?
                     <>
                         <h4>you have {unCompleted} unfinished tasks</h4>
-                        <Select
-                            value={state}
-                            options={options}
-                            onChange={selectHanlder}
-                        />
-
                         {/*  
                         WITH SELECT
                        <select value={state} onChange={selectHanlder}>
@@ -30,6 +24,12 @@ const NavBar = ({ unCompleted, selectHanlder, state }) => {
                     </>
                     : ""
             }
+            <Select
+                value={state}
+                options={options}
+                onChange={selectHanlder}
+                styles={{ma:"1rem"}}
+            />
         </div>
     );
 }

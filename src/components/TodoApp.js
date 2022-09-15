@@ -85,13 +85,16 @@ function TodoApp() {
             case "Completed":
                 let filterCompleted = todos.filter((t) => t.isComplete)
                 setFilteredTodos(filterCompleted)
+                setState("All")
                 break;
             case "UnCompleted":
                 let filterUnCompleted = todos.filter((t) => !t.isComplete)
                 setFilteredTodos(filterUnCompleted)
+                setState("All")
                 break;
             default:
                 setFilteredTodos(todos)
+                setState("All")
                 break;
         }
     }
@@ -104,10 +107,10 @@ function TodoApp() {
         <div className="container">
             <div className="linethrought" />
             <h2 className="title">TodoList</h2>
-            <NavBar 
-            unCompleted={filterUnCompleted()} 
-            selectHanlder={selectChangeHandler} 
-            state={state} />
+            <NavBar
+                unCompleted={filterUnCompleted()}
+                selectHanlder={selectChangeHandler}
+                state={state} />
             <TodoForm addOrEditTodo={todoAddHandler} />
             <hr />
             <TodoList
