@@ -23,7 +23,6 @@ function TodoList(props) {
                             completeTodo={() => props.onCompleteTodo(item.id)}
                             onDelete={() => props.onDelete(item.id)}
                             onEdit={() => setEdit(item)}
-                        //props.onEdit(item.id)
                         />
                     </Fragment>
                 })
