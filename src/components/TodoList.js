@@ -11,7 +11,7 @@ function TodoList(props) {
         setEdit({ id: null, text: "", isComplete: false })
     }
 
-    if (props.list.length === 0) return <span className="adding-text">Add Your Todo List!!</span>
+    if (props.list.length === 0) return <span className="adding-text">Nothing Here ;)</span>
     return (
         <div className="todolist">
             {

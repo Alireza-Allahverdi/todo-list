@@ -1,9 +1,17 @@
-const NavBar = (props) => {
+const NavBar = ({unCompleted , selectHanlder, state}) => {
+
     return (
         <div>
             {
-                props.unCompleted ?
-                    <h4>you have {props.unCompleted} tasks unfinished</h4>
+                unCompleted ?
+                    <>
+                        <h4>you have {unCompleted} unfinished tasks</h4>
+                        <select value={state} onChange={selectHanlder}>
+                            <option value="All">All</option>
+                            <option value="Completed">Completed</option>
+                            <option value="UnCompleted">UnCompleted</option>
+                        </select>
+                    </>
                     : ""
             }
         </div>

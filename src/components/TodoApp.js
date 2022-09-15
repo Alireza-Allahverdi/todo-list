@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import NavBar from "./NavBar"
 import TodoForm from "./TodoForm"
 import TodoList from "./TodoList"
 
 function TodoApp() {
     const [todos, setTodos] = useState([])
+    const [filteredTodos, setFilteredTodos] = useState([])
+    const [state, setState] = useState("All")
 
     const todoAddHandler = (update) => {
         let newData = {
@@ -67,21 +69,49 @@ function TodoApp() {
         setTodos(copyTodo)
     }
 
-    const filterUnCompleted =() => {
-        let filterTodos= todos.filter((todo) => !todo.isComplete).length
-        console.log(filterTodos);
+    const filterUnCompleted = () => {
+        let filterTodos = todos.filter((todo) => !todo.isComplete).length
         return filterTodos
     }
+
+    const selectChangeHandler = (e) => {
+        let newState = e.target.value
+        setState(newState)
+        filterTodosHandler(newState)
+    }
+
+    const filterTodosHandler = (state) => {
+        switch (state) {
+            case "Completed":
+                let filterCompleted = todos.filter((t) => t.isComplete)
+                setFilteredTodos(filterCompleted)
+                break;
+            case "UnCompleted":
+                let filterUnCompleted = todos.filter((t) => !t.isComplete)
+                setFilteredTodos(filterUnCompleted)
+                break;
+            default:
+                setFilteredTodos(todos)
+                break;
+        }
+    }
+
+    useEffect(() => {
+        filterTodosHandler(state)
+    }, [todos, state])
 
     return (
         <div className="container">
             <div className="linethrought" />
             <h2 className="title">TodoList</h2>
-            <NavBar unCompleted={filterUnCompleted()}/>
+            <NavBar 
+            unCompleted={filterUnCompleted()} 
+            selectHanlder={selectChangeHandler} 
+            state={state} />
             <TodoForm addOrEditTodo={todoAddHandler} />
             <hr />
             <TodoList
-                list={todos}
+                list={filteredTodos}
                 onCompleteTodo={onCompleteTodo}
                 onDelete={deleteHanlder}
                 updateTodo={editHandler}
