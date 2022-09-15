@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 function TodoForm(props) {
     const [inputVal, setInputVal] = useState(props.isEditMode ? props.value : "");
     const [err, setErr] = useState("")
-
     const inputRef = useRef(null)
+    const inputRef2 = useRef(null)
 
     const inputChangeHandler = (e) => {
         setErr("")
@@ -13,51 +13,53 @@ function TodoForm(props) {
 
     const submitTodo = (e) => {
         e.preventDefault();
-        if (!props.isEditMode) {
-            if (!inputVal) {
-                setErr("input must not be empty")
-                return
-            }
+        if (!inputVal) {
+            setErr("input must not be empty")
+            return
         }
         props.addOrEditTodo(inputVal)
         setInputVal("")
     }
 
     useEffect(() => {
-        inputRef.current.focus()
+        if (props.isEditMode) {
+            inputRef2.current.focus()
+        }
+        else { inputRef.current.focus() }
+
     }, [])
 
     return (
         <form onSubmit={submitTodo} className="todo-form">
             {
-                props.isEditMode ?
-                    <>
-                        <hr />
-                        <p className='err'>{err}</p>
-                        <input
-                            id="editInp"
-                            className='update-inp'
-                            type="text"
-                            onChange={inputChangeHandler}
-                            value={inputVal}
-                            placeholder={"Enter New Todo"}
-                            ref={inputRef}
-                        />
-                        <button className='update-btn' type='submit'>Update</button>
-                        <button className='update-btn' type='button'>Cancel</button>
-                    </>
-                    :
-                    <>
-                        <p className='err'>{err}</p>
-                        <input
-                            type="text"
-                            onChange={inputChangeHandler}
-                            value={inputVal}
-                            placeholder={"Enter Todo"}
-                            ref={inputRef}
-                        />
-                        <button type='submit'>Add</button>
-                    </>
+                props.isEditMode && <hr />
+            }
+
+            <p className='err'>{err}</p>
+            <input
+                id={props.isEditMode ? "editInp" : ""}
+                className='update-inp'
+                type="text"
+                onChange={inputChangeHandler}
+                value={inputVal}
+                placeholder={props.isEditMode ? "Enter New Todo" : "Enter Todo"}
+                ref={props.isEditMode ? inputRef2 : inputRef}
+            />
+            <button
+                className={props.isEditMode ? 'update-btn' : ""}
+                type='submit'
+            >
+                {
+                    props.isEditMode ?
+                        <>Update</>
+                        :
+                        <>Add</>
+                }
+            </button>
+            {
+                props.isEditMode &&
+                <button className='update-btn' type='button'>Cancel</button>
+
             }
         </form>
     )
