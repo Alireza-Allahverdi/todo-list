@@ -75,9 +75,9 @@ function TodoApp() {
     }
 
     const selectChangeHandler = (e) => {
-        let newState = e.target.value
+        let newState = e
         setState(newState)
-        filterTodosHandler(newState)
+        filterTodosHandler(newState.value)
     }
 
     const filterTodosHandler = (state) => {
@@ -97,7 +97,7 @@ function TodoApp() {
     }
 
     useEffect(() => {
-        filterTodosHandler(state)
+        filterTodosHandler(state.value)
     }, [todos, state])
 
     return (
