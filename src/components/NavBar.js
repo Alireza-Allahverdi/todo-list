@@ -28,7 +28,7 @@ const NavBar = ({ unCompleted, selectHanlder, state }) => {
                 value={state}
                 options={options}
                 onChange={selectHanlder}
-                styles={{ma:"1rem"}}
+                className="select"
             />
         </div>
     );
