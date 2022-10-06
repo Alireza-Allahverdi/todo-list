@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Todo({ info, keys, completeTodo, onDelete, onEdit }) {
     return (
         <div className='todo-item' key={keys}>
-            <input className="checkbox" type="checkbox" onClick={completeTodo} />
+            <input className="checkbox" type="checkbox" onClick={completeTodo} checked={info.isComplete ? true: false}/>
             <div className={`todo-text ${info.isComplete ? "complete" : ""}`} onClick={completeTodo}>
                 {info.text}
             </div>
