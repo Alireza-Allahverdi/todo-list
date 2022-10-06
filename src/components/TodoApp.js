@@ -21,7 +21,7 @@ function TodoApp() {
     }
 
     const onCompleteTodo = (id) => {
-        //! these steps are importantّ
+        //! these steps are important
 
         //? we must first find the index we are looking for to change
         let selectedIndex = todos.findIndex((todo) => todo.id === id)
@@ -85,16 +85,13 @@ function TodoApp() {
             case "Completed":
                 let filterCompleted = todos.filter((t) => t.isComplete)
                 setFilteredTodos(filterCompleted)
-                setState("All")
                 break;
             case "UnCompleted":
                 let filterUnCompleted = todos.filter((t) => !t.isComplete)
                 setFilteredTodos(filterUnCompleted)
-                setState("All")
                 break;
             default:
                 setFilteredTodos(todos)
-                setState("All")
                 break;
         }
     }
