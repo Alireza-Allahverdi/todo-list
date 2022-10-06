@@ -29,6 +29,10 @@ function TodoForm(props) {
 
     }, [])
 
+    useEffect(() => {
+        setInputVal(props.value)
+    }, [props.value])
+
     return (
         <form onSubmit={submitTodo} className="todo-form">
             {
