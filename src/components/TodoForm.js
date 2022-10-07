@@ -62,7 +62,11 @@ function TodoForm(props) {
             </button>
             {
                 props.isEditMode &&
-                <button className='update-btn' type='button'>Cancel</button>
+                <button 
+                className='update-btn' 
+                type='button'
+                onClick={()=> {props.setFromState(false)}}
+                >Cancel</button>
 
             }
         </form>

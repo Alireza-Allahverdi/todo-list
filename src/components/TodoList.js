@@ -5,10 +5,14 @@ import TodoForm from "./TodoForm"
 function TodoList(props) {
 
     const [edit, setEdit] = useState({ id: null, text: "", isComplete: false })
+    const [formState, setFormState] = useState(true)
 
     const editTodo = (value) => {
         props.updateTodo(edit.id, value)
         setEdit({ id: null, text: "", isComplete: false })
+    }
+    const formStateChanger = (state) => {
+        setFormState(state)
     }
 
     if (props.list.length === 0) return <span className="adding-text">Nothing Here ;)</span>
@@ -23,13 +27,20 @@ function TodoList(props) {
                             completeTodo={() => props.onCompleteTodo(item.id)}
                             onDelete={() => props.onDelete(item.id)}
                             onEdit={() => setEdit(item)}
+                            formStateChange={formStateChanger}
                         />
                     </Fragment>
                 })
             }
             {
-                edit.id ?
-                    <TodoForm isEditMode={true} value={edit.text} addOrEditTodo={editTodo} />
+                formState &&
+                    edit.id ?
+                    <TodoForm
+                        isEditMode={true}
+                        value={edit.text}
+                        addOrEditTodo={editTodo}
+                        setFromState={formStateChanger}
+                    />
                     : ""
             }
         </div>

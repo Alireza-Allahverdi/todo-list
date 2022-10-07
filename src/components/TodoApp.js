@@ -62,6 +62,7 @@ function TodoApp() {
 
         let selectedTodo = { ...todos[selectedIndex] }
         selectedTodo.text = newVal
+        selectedTodo.isComplete = false
 
         let copyTodo = [...todos]
         copyTodo[selectedIndex] = selectedTodo
